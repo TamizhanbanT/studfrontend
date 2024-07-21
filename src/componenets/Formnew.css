@@ -1,0 +1,111 @@
+body{
+    font-family: Helvetica, sans-serif;
+}
+.stu-reg{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 7%;
+    justify-content: space-evenly;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.836);
+}
+h2{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 40%;
+    float: left;
+    color: dimgray;
+    font-family: Helvetica, sans-serif;
+}
+form > div{
+    font-size: 130%;
+    padding-bottom: 10%;
+}
+.form-group2{
+    display: flex;
+}
+.form-group1{
+     margin-right: 10%;
+}
+.form-group3{
+    width: 20%;
+}
+select,option{
+    float: right;
+    margin-right: 25%;
+    width: 40%;
+    height: 100%;
+    padding: 1%;
+    color: rgb(94, 84, 74);
+    border: 1px solid rgba(0, 0, 0, 0.329);
+    border-radius: 10px;
+}
+label{
+    margin-bottom: 2%;
+}
+
+.tab{
+     margin-left: 12.5% ;
+    font-size: 120%;
+    text-align: center;
+}
+.mod-btn{
+    display: inline;
+    margin: 5% auto;
+    float: right;
+    margin-right: 10%;
+}
+input{
+    border: 2px solid grey;
+    height: 40x
+ }
+
+.Submit{
+    margin-left: 15%;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+.btn1{
+    margin-left: 15%;
+}
+
+span{
+    color: red;
+}
+.school{
+    padding-left: 2%;
+}
+.form-check-label{
+    margin-left: 5%;
+}
+h3{
+    text-align: center;
+    margin-bottom: 3%;
+    color: rgb(74, 141, 241);
+    text-shadow: 1px 1px #889de2;
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .stu-reg{
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group {
+        padding-bottom: 5%;
+    }
+    
+    .tab {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    .mod-btn {
+        width: 80%;
+    }
+}

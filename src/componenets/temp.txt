@@ -1,0 +1,161 @@
+let tbody = document.querySelector('.tbody1');
+let Alldata = []
+let birthdate = document.getElementById("date-b")
+let Appupdate = document.getElementById("app");
+let Resetform = document.getElementById("reset-form")
+
+//Validation for UNIQUE application number
+
+Appupdate.addEventListener("change", function (e) {
+    for (appno of Alldata) {
+        if (appno.app.includes(e.target.value)) {
+            alert("Try another application number");
+            e.target.value = "";
+            return false;
+        }
+    }
+})
+
+// Validation for Phone Number
+
+let passinput = document.getElementById("phone");
+let invalidChars = ["-", "+", "e", "E"];
+passinput.addEventListener("keypress", function (e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
+});
+
+//Validation for application number
+
+Appupdate.addEventListener("keypress", function (e) {
+    if (invalidChars.includes(e.key)) {
+        e.preventDefault();
+    }
+});
+
+// validation for AGE calculatuion
+
+birthdate.addEventListener("change", function () {
+    let currdate = new Date()
+    let dobold = document.getElementById("date-b").value
+    let dobnew = new Date(dobold)
+    let age = currdate.getFullYear() - dobnew.getFullYear()
+    if (currdate.getMonth() - dobnew.getMonth() < 0 || (currdate.getMonth() == dobnew.getMonth() && currdate.getDate() - dobnew.getDate() < 0)) {
+        age--
+    }
+    if (age < 0) {
+        document.getElementById("age").value = 0
+    }
+    else {
+        document.getElementById("age").value = age
+    }
+})
+
+//creation and editing of received form-data
+
+formData.addEventListener("submit", function (e) {
+    e.preventDefault()
+    let Dupicateapplication = false
+    let Duplicateinddex;
+    for (formele in Alldata) {
+        if (Alldata[formele].app == Appupdate.value) {
+            Dupicateapplication = true
+            Duplicateinddex = formele
+        }
+    }
+    if (Dupicateapplication) {
+        console.log(Alldata)
+        Object.keys(Alldata[Duplicateinddex]).forEach(key => {
+            let DuplicateID = document.getElementsByName(key)[0].id
+            console.log(DuplicateID)
+            Alldata[Duplicateinddex][key] = document.getElementById(DuplicateID).value
+            Display();
+        });
+    }
+    else {
+        let Data = new FormData(formData)
+        console.log(Object.fromEntries(Data)) // Object.fromEntries  (less complicated)
+        let object1 = {}
+        for (const value of Data) {
+            Object.defineProperty(object1, value[0], {
+                value: value[1],
+                writable: true,
+                configurable: true,
+                enumerable: true   //configure property while creating
+            });
+        }
+        Alldata.push(object1)
+        Display()
+        formData.reset();
+    }
+
+})
+
+// creating table using DOM manipulation
+
+function Display() {
+    tbody.innerHTML = "";
+    let countloop = 0
+    for (studet of Alldata) {
+        countloop++
+        let newRow = document.createElement('tr');
+        // console.log(Object.values(studet))  // this method  works when setting enumerable true
+        let arrkey = Object.getOwnPropertyNames(studet)
+        for (arrvalue of arrkey) {
+            let Cell = document.createElement('td');
+            Cell.textContent = studet[arrvalue];
+            newRow.appendChild(Cell);
+
+            if (arrvalue == "course") {
+                let count = countloop
+                let DeleteCell = document.createElement('td');
+                let DeleteButton = document.createElement("button");
+                DeleteButton.textContent = "DELETE";
+                DeleteButton.addEventListener("click", () => { Deleterow(count) })
+                DeleteCell.appendChild(DeleteButton)
+                newRow.appendChild(DeleteCell)
+
+                let EditCell = document.createElement('td');
+                let EditButton = document.createElement("button")
+                EditButton.textContent = "Edit"
+                EditButton.addEventListener("click", () => { Editrow(count) })
+                EditCell.appendChild(EditButton)
+                newRow.appendChild(EditCell)
+            }
+        }
+        tbody.appendChild(newRow);
+    }
+}
+
+//Deliting Row from table
+
+function Deleterow(del) {
+    Alldata.splice(del - 1, 1)
+    Display()
+}
+
+//Editing table -->(only displaying of what data should be edited will be shown, other process in above)
+
+function Editrow(edit) {
+    console.log(edit - 1)
+    let Editform = Alldata[edit - 1]
+    let EditformKeys = Object.keys(Editform)
+    for (elename of EditformKeys) {
+        let eleID = document.getElementsByName(elename)[0].id
+        document.getElementById(eleID).value = Editform[elename]
+    }
+
+}
+
+// reset form elements
+
+Resetform.addEventListener("reset", function (e) {
+    formData.reset()
+})
+
+//bugs
+
+//disabled option if activated in html form-data doesnt get value
+//gender option different ID problem
+

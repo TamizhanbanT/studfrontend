@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div class="container">
+        <form class="stu-reg" id="formData">
+            <div class="heading">STUDENT REGISTRATION FORM</div>
+            <div class="user-detail">
+                <div class="appno">
+                    <label for="app" >Application No:</label>
+                    <input type="number" id="app" name="app" maxlength="3">
+                </div>
+                <div class="firstname">
+                    <label for="first">First Name:</label>
+                    <input type="text" name="first" id="first" required autocomplete="off">
+                </div>
+                <div class="lastname">
+                    <label for="last">Last Name:</label>
+                    <input type="text" name="last" id="last" required>
+                </div>
+                <div class="email-id">
+                    <label for="email">Email Id:</label>
+                    <input type="email" name="email" id="email" autocomplete="off">
+                </div>
+                <div class="phone-num">
+                    <label for="phone">Phone Number:</label>
+                    <input type="number" name="phone" id="phone" >
+                </div>
+                <div class="dob">
+                    <label for="date-b">Date of Birth:</label>
+                    <input type="date"  id="date-b">
+                </div>
+                <div class="age">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age"  readonly>
+                </div>
+                <div class="address">
+                    <label for="add">Address:</label>
+                    <textarea id="add" name="add"></textarea>
+                </div>
+                <div class="gender">
+                    <label>Gender:</label>
+                    <label for="gen1" class="genn">Male</label>
+                    <input type="radio" id="gen1" name="gender" value="Male" required>
+                    <label for="gen">Female</label>
+                    <input type="radio" id="gen" name="gender" value="Female">
+                </div>
+                <div class="course">
+                    <label for="course">Course:</label>
+                    <select name="course" id="course">
+                        <option value="Biology">Biology</option>
+                        <option value="Computer science">Computer science</option>
+                    </select>
+                </div>
+                <div class="subs">
+                    <input
+                        type="checkbox"
+                        id="subscribeNews"  
+                         /> 
+                        <label for="subscribeNews">Subscribe to newsletter</label>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+                <button type="reset" class="reset-form">Clear Form</button>
+                </div>              
+            </div>
+        </form>
+    </div>
+    <h2 class="stuinfo">REGISTERED INFORMATION</h2>
+    <table class="Tab">
+        <thead>
+            <tr>
+                <th>Application No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th>Delete Row</th>
+                <th>Edit Row</th>
+            </tr>
+        </thead>
+        <tbody class="tbody1">
+
+        </tbody>
+    </table>
+    <script src="form2.js" defer></script>
+</body>
+
+</html>
